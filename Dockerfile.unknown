@@ -1,0 +1,14 @@
+# Usa una imagen de Python como base
+FROM python:3.8
+
+# Establece el directorio de trabajo en /app
+WORKDIR /api
+
+# Copia el archivo actual al contenedor en /app
+COPY main.py .
+
+COPY requirements.txt .
+RUN pip install fastapi uvicorn
+
+# Ejecuta el comando python cuando se inicie el contenedor
+CMD [ "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000" ]
